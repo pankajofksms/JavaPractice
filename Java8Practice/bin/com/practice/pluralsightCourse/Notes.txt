@@ -1,0 +1,127 @@
+**-----**
+We can put modifier in the parameter of a lambda expression
+ - final keyword
+ - annotations
+ 
+**-----**
+	foreach() in iterable interface is a default method
+
+**-----** 
+	java.util.function package
+	
+**-----**
+// Example of functional interface
+
+	public interface Predicate<T> {
+		boolean test(T t);
+	}
+	
+	Predicate<String> p = s -> s.length < 20; // p is still an interface
+	
+	System.out.println(p.test("Hello World")); 
+	
+**-----**
+	Functional interfaces
+	1. only one abstract class
+	2. default methods does not count
+	3. static methods does not count
+	4. methods from object class does not count
+	
+may be annotated with @FunctionalInterface (not mandatory for legacy reason)
+	
+**-----**
+	java.util.function package
+	- There are 43 classes but broadly there are just 4 categories
+		* Consumer - consumes an object and does not return anything
+			> public interface Consumer<T> {
+					public void accept(T t);
+			  }
+			
+			> Consumer<String> printer -> s -> System.out.println(s);
+	
+			> Bi-Consumer - takes two argument in accept method
+			
+		
+		* Supplier - does not take any parameter and return object of type T
+			> public interface Supplier<T> {
+				public T get();
+			  }
+			  
+			> Supplier<Person> person -> () -> new Person(); // OR  Supplier<Person> person -> Person::new;
+			
+		* Function - takes an object and returns another object
+			> public interface Function<T, R> {
+			 	public R apply(T t);
+			  } 
+			  
+			> Function<Person, Integer> ageMapper -> (person) -> person.getAge(); 
+			
+			> BiFunction
+			  public interface BiFunction<T, T, R> {
+			 	public R apply(T t1, T t2);
+			  }
+			  
+			> public interface UnaryOperator<T> extends Function<T,T> {
+			 	
+			  }
+			  
+			> public interface BinaryOperator<T> extends BiFunction<T,T,T> {
+
+			  }
+			
+		* Predicate - takes an object and returns a boolean
+			> public interface Predicate<T>{
+				public boolean test(T t);
+			  }
+			  
+			> Predicate<Person> ageGT20 = (person) -> person.getAge() > 20; 
+			  
+			> public interface BiPredicate<T,U> {
+				public boolean test (T t, U u);
+			  }			 
+		
+**-------**
+	Methods on Iterable & Collection Interface
+	* On Iterable -- foreach() 
+		boolean foreach(Consumer<? super E> consumer);
+	
+	* On collection -- boolean removeIf(Predicate<? super E> filter);
+	
+	* On list -- 
+		boolean replaceAll(UnaryOperator<? super E> operator);
+		boolean sort(Comparator<? super E> comparator);
+		
+	* On Map 
+		- forEach(BiConsumer .....)
+		- getOrDefault
+		- putIfAbsent (Eg. map.putIfAbsent(boston, new ArrayList()); ) //If key already present it returns the value		
+		- V replace(key,value);
+		- boolean replace(key,existingValue,newValue)
+		- void replaceAll(BiFunction<.....>);
+		- remove(key,value) // Will be removed only if both key and value matches
+		- compute* methods
+			compute(....)
+			computeIfAbsent(...)
+			computeIfPresent(...)
+		- merge(...)
+		
+		
+**-------------------------------------**
+	 Module 4 (Map, Filter, Reduce)
+**-------------------------------------**
+
+	- Average of people older than 20
+	  People 'Map' age 'Filter' age>20 'Reduce' Average
+	  Map -> (List<Person> -> List<Integer>) (List of one type and returns list of another type with list size same)
+	  Filter -> (List<Integer> -> List<Integer>) (Output list size can be same or less than the original size)
+	  Reduce -> (List<Integer> -> Integer) (Completely changes the type of object passed as input)	
+		
+	- Extra care to be taken while designing reduction step
+		* Have proper associative property
+		* Identity property (base condition ** 1 for multiply 0 for sum etc)
+		
+		
+		
+		
+		
+		

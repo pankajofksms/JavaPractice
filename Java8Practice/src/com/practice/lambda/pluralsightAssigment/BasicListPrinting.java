@@ -1,4 +1,4 @@
-package com.practice.lambda;
+package com.practice.lambda.pluralsightAssigment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,14 @@ public class BasicListPrinting {
 		integerList.add(3);
 
 		integerList.forEach(System.out::println);
+		
+		System.out.println("\n***** Another way to do the same ****" +'\n');
+		
+		integerList.forEach(item -> System.out.println(item));
+		
+		System.out.println("\n***** Print square of each number ****" +'\n');
+		
+		integerList.forEach(item -> System.out.println(item*item));
 	}
 
 }
