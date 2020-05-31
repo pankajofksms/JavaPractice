@@ -155,7 +155,64 @@ may be annotated with @FunctionalInterface (not mandatory for legacy reason)
 	
 	- Stream<String> lines = Files.lines(path); // A Stream on the lines of the text file
 	
+	- StreamBuilder Pattern
+		* Stream.Builder<String> builder = Stream.builder(); 
+		
+		* To add do either of the following
+			builder.add("one").add("two");
+			builder.accept("three"); // Chaining not allowed with accept method
+	
+		* Stream<String> stream = builder.build();
+		
+		// After this add and accept will throw exception. After calling build method we cannot call add or accept
+		
+		* stream.forEach(System.out::println)
+	
+		
+	- persons.stream()                       //Stream<Person>
+			 .map(p -> p.getAge())			 //Stream<Integer>
+			 .filter(age -> age > 20)		 //Stream<Integer>
+			 .forEach(System.out::println);
+			 
+		This code prints all "age" greater than 20	 
+	
+	- If we want to print people
+			persons.stream()                       //Stream<Person>
+			       
+			       .filter(p -> p.getAge() > 20)   //Stream<Integer>
+			       .forEach(System.out::println);
+		
+	  // A map() can change the type of a stream
+	  // A filter() cannot change the type of a stream
+	  
+	- persons.stream()                       
+			 .map(p -> p.getAge())
+			 .peek(System.out::println) // to be used instead of forEach(here) since peek is a intermediate method
+			 							// peek is only for debugging/logging purpose. Should be avoided in prod			 
+			 .filter(age -> age > 20)		 
+			 .forEach(System.out::println);		
+	
+	- Intermediate operation / Terminal operation
+	
+	- A call that returns a stream is called intermediate call
+	  A call that returns anything else including void are called terminal operation
+	  
+	- persons.stream()
+			 .skip(2)      // will skip the first 2 data in the stream
+			 .limit(3)     // will only take the next 3 data in the stream, rest of the data will not be considered
+			 .filter(person -> person.getAge() > 20)
+			 .forEach(System.out::println);
+	
 	- 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
