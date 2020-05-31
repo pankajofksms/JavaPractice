@@ -122,6 +122,42 @@ may be annotated with @FunctionalInterface (not mandatory for legacy reason)
 		
 		
 		
-		
-		
-		
+**-------------------------------------**
+	 Module 4 (Streams API)
+**-------------------------------------**		
+	- Stream is a typed interface (can be stream of a person, stream of country etc)
+	  public interface Stream<T> extends BaseStream<T, Stream<T>> {
+	  	//interface
+	  }
+	  
+	- Also, IntStream, LongStream, DoubleStream
+	
+	- Stream holds no data (It just pulls data from a source)
+	
+	- Stream does not modify any data of the source (because we want to process the data parallely and do not want any visibility issues)  
+	  
+	- the source may be unbounded (the data may not be finite, size of the source is not known at build time)
+	
+	- List<Person> people = ...;
+	  Stream<Person> stream = people.stream();	
+	  
+	- Stream.empty(); // empty stream for testing purpose
+	
+	- Stream.of("one"); // singleton stream with one element (We can have multiple streams Stream.of("one", "two","three"))
+	
+	- Stream.generate(() -> "one"); // A constant stream. Takes a supplier as an argument
+	
+	- Stream.iterate("+", s -> s + "+"); // A growing stream. Takes an unaryOperator
+	
+	- ThreadLocalStream.current().ints(); // A random stream. 
+	
+	- IntStream stream = "hello".chars(); // A stream on the letters of a string
+	
+	- Stream<String> lines = Files.lines(path); // A Stream on the lines of the text file
+	
+	- 
+	
+	
+	
+	
+	 
