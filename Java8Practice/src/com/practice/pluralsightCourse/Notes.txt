@@ -203,15 +203,52 @@ may be annotated with @FunctionalInterface (not mandatory for legacy reason)
 			 .filter(person -> person.getAge() > 20)
 			 .forEach(System.out::println);
 	
-	- 
+	- Match reduction. They are terminal operation and return boolean (short-circuiting terminal {may not scan all element})
+		Three types of matches defined:
+		* anyMatch()
+		* allMatch()
+		* noneMatch()
+		
+		List<Person> people = ...;
+		boolean allMatch = people.stream()
+			  				     .allMatch(p->p.getAge()>20);
+			  				     
+	- Find Reduction. Might have nothing to return when stream is empty 'OR' no values matches the predicate. So result is wrapped to <Optional>
+		* findFirst()
+		* findAny()
+		
+		List<Person> people = ...;
+		Optional<Person> opt =  people.stream()
+			  				          .findFirst(p->p.getAge()>20); 
+		//Returns first if stream is built on list. With hashmap it returns any object which matches the criteria
 	
+	- Reduce reduction
+		* If no identity is provided, then an Optional is returned
+		* Associativity is assumed but not enforced // In case of non-associative it might give out improper results
+		
+		* First version of reduction
+		  List<Person> people = ...
+		  int sumOfAges = people.stream()
+							  .reduce(0,(p1,p2) -> p1.getAge()+p2.getAge());	
 	
+		* Second version of reduction
+		  List<Person> people = ...
+		  List<Integer> sumOfAges = people.stream()
+							  .reduce((p1,p2) -> p1.getAge()+p2.getAge());	
 	
-	
-	
-	
-	
-	
+	    //If identity element(0 in above case) is not provided, then this would return an Optional --> Second Version of Reduction
+	 
+	- Third version of Reduction (used in parallel operations)
+		List<Person> people = ...
+		List<Integer> ages = people.stream()
+								   .reduce(
+								   new ArrayList<Integer>(),
+								   (list,p) -> { list.add(p.getAge());  return list;},
+								   (list1,list2) -> {list1.addAll(list2); return list1;}
+								   );
+								   
+		* Identity element, accumulator, combiner
+								   
 	
 	
 	
