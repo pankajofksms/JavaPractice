@@ -1,4 +1,4 @@
-package com.practice.pluralsightCourse;
+package com.practice.pluralsightCourse.lambda_streams;
 
 public class M3City {
 

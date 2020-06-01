@@ -1,4 +1,4 @@
-package com.practice.pluralsightCourse;
+package com.practice.pluralsightCourse.lambda_streams;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
