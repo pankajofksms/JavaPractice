@@ -7,5 +7,5 @@
 * @version 1.0
 */
 
-package com.practice.pluralsightCourse;
+package com.practice.pluralsightCourse.lambda_streams;
 
