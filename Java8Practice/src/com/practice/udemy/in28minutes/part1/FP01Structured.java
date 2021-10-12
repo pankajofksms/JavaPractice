@@ -1,4 +1,4 @@
-package com.practice.udemy.in28minutes;
+package com.practice.udemy.in28minutes.part1;
 
 import java.util.List;
 
