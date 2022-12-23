@@ -22,26 +22,28 @@ public class Exercise01 {
         printCoursesWithMin4Length(courses);
     }
 
-    private static void printOddNumbers(List<Integer> numbers) {
-        numbers.stream()
-                .filter(num -> num % 2 == 1)
-                .forEach(num -> System.out.print(num + ","));
-    }
-
-    private static void printCourses(List<String> courses) {
-        courses.stream().forEach(System.out::println);
+    private static void printCoursesWithMin4Length(List<String> courses) {
+        courses.stream()
+                .filter(word -> word.length()>=4)
+                .forEach(System.out::println);
     }
 
     private static void printCoursesWithSpringWord(List<String> courses) {
         courses.stream()
-                .filter(course -> course.contains("Spring"))
+                .filter(word -> word.contains("Spring"))
                 .forEach(System.out::println);
     }
 
-    private static void printCoursesWithMin4Length(List<String> courses) {
+    private static void printCourses(List<String> courses) {
         courses.stream()
-                .filter(course -> course.length() >= 4)
                 .forEach(System.out::println);
     }
+
+    private static void printOddNumbers(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number % 2 != 0)
+                .forEach(System.out::println);
+    }
+
 
 }

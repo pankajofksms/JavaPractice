@@ -14,16 +14,19 @@ public class Exercise02 {
         printNumberOfCharacters(courses);
     }
 
+    private static void printNumberOfCharacters(List<String> courses) {
+        courses.stream()
+                .map(String::length)
+                .forEach(System.out::println);
+
+    }
+
     private static void printCubesOfOddNumbers(List<Integer> numbers) {
         numbers.stream()
-                .filter(num -> num % 2 == 1)
-                .map(num -> num * num * num)
+                .filter(number -> number % 2 == 1)
+                .map(n -> n * n * n)
                 .forEach(System.out::println);
     }
 
-    private static void printNumberOfCharacters(List<String> courses) {
-        courses.stream()
-                .map(course -> course + " --> " + course.length())
-                .forEach(System.out::println);
-    }
+
 }
