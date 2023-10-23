@@ -6,11 +6,7 @@ public class Example01 {
 
     public static void main(String[] args) {
         List<Integer> integers = List.of(32,43,564,32,8,5,3,10);
-        //printAllNumbers(integers);
         printAllEvenNumbers(integers);
-
-
-
     }
 
     private static void printAllEvenNumbers(List<Integer> integers) {
